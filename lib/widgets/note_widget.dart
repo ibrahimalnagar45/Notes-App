@@ -10,19 +10,23 @@ class NoteWidget extends StatelessWidget {
         Container(
           height: 100,
           decoration: BoxDecoration(
-              color: Colors.red, borderRadius: BorderRadius.circular(20)),
+              color: Colors.white.withOpacity(.16),
+              borderRadius: BorderRadius.circular(20)),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "flutter tips",
-                  style: TextStyle(fontSize: 35),
+                  "Flutter Tips",
+                  style: TextStyle(
+                    fontSize: 35,
+                  ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 1,
                 ),
                 Text(
                   "data",
