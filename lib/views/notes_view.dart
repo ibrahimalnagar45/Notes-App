@@ -11,6 +11,7 @@ class NotesView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const CustomAppBar(
+          icon: Icons.search,
           title: "Notes",
         ),
       ),

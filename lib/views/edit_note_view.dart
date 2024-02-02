@@ -11,6 +11,7 @@ class EditNoteView extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const CustomAppBar(
+          icon: Icons.done,
           title: "Edit Note",
         ),
       ),
