@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notesapp/widgets/note_widget.dart';
+import 'package:notesapp/widgets/add_note_buttom_sheet.dart';
+import '../widgets/custom_app_bar.dart';
+import '../widgets/notes_listview.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});
@@ -8,39 +10,22 @@ class NotesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Notes",
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-        ),
-        actions: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadiusDirectional.circular(15),
-              color: Colors.white.withOpacity(.15),
-            ),
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.search,
-                size: 30,
-              ),
-            ),
-          )
-        ],
+        title: const CustomAppBar(),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 9.0),
-        child: ListView(children: [
-          NoteWidget(),
-          SizedBox(
-            height: 12,
-          ),
-          NoteWidget(),
-          SizedBox(
-            height: 12,
-          ),
-          NoteWidget(),
-        ]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return const AddNoteBottumSheet();
+              });
+        },
+        backgroundColor: Colors.black,
+        child: const Icon(Icons.add),
+      ),
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 9.0),
+        child: NotesListView(),
       ),
     );
   }
