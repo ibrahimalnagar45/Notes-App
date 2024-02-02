@@ -5,15 +5,17 @@ class CustomTextField extends StatelessWidget {
       {super.key,
       this.withborder = true,
       required this.hintText,
-      required this.fontSize});
+      required this.fontSize,
+      required this.maxLine});
   final bool withborder;
   final String hintText;
   final double fontSize;
+  final int maxLine;
   @override
   Widget build(BuildContext context) {
     return TextField(
       keyboardType: TextInputType.multiline,
-      maxLines: null,
+      maxLines: maxLine,
       onSubmitted: (data) {},
       decoration: InputDecoration(
         focusedBorder: withborder == true

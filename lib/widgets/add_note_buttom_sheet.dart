@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notesapp/widgets/custom_botton.dart';
+import 'package:notesapp/widgets/custom_color_row_options.dart';
 import 'package:notesapp/widgets/custom_textfield.dart';
 
 class AddNoteBottumSheet extends StatelessWidget {
@@ -12,16 +13,22 @@ class AddNoteBottumSheet extends StatelessWidget {
       child: ListView(
         children: [
           const CustomTextField(
+            maxLine: 2,
             fontSize: 20,
             hintText: "Title",
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          const CustomColorOptions(),
           const CustomTextField(
+            maxLine: 5,
             fontSize: 15,
             hintText: "Description",
             withborder: false,
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 3,
+            height: MediaQuery.of(context).size.height / 6,
           ),
           const CustomBottom()
         ],

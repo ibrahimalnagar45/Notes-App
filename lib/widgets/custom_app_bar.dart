@@ -21,7 +21,9 @@ class CustomAppBar extends StatelessWidget {
             borderRadius: BorderRadiusDirectional.circular(15),
             color: Colors.white.withOpacity(.15),
           ),
-          child:  CustomSearchIcon(icon: icon,),
+          child: CustomIcon(
+            icon: icon,
+          ),
         )
       ],
     );
