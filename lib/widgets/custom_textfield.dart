@@ -26,7 +26,7 @@ class CustomTextField extends StatelessWidget {
         enabledBorder: withborder == true
             ? UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Colors.white.withOpacity(.5),
+                  color: Colors.white.withOpacity(.3),
                 ),
               )
             : InputBorder.none,

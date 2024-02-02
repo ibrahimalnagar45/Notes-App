@@ -5,12 +5,14 @@ import '../widgets/notes_listview.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});
-
+  static String id = "NotesView";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const CustomAppBar(),
+        title: const CustomAppBar(
+          title: "Notes",
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
