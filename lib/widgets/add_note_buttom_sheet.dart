@@ -8,11 +8,35 @@ class AddNoteBottumSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      child: AddNote(),
+    );
+  }
+}
+
+class AddNote extends StatefulWidget {
+  const AddNote({super.key});
+
+  @override
+  State<AddNote> createState() => _AddNoteState();
+}
+
+class _AddNoteState extends State<AddNote> {
+  final GlobalKey<FormState> formkey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  String? title, discreption;
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formkey,
+      autovalidateMode: autovalidateMode,
       child: ListView(
         children: [
-          const CustomTextField(
+          CustomTextField(
+            onsaved: (value) {
+              title = value;
+            },
             maxLine: 2,
             fontSize: 20,
             hintText: "Title",
@@ -21,7 +45,10 @@ class AddNoteBottumSheet extends StatelessWidget {
             height: 20,
           ),
           const CustomColorOptions(),
-          const CustomTextField(
+          CustomTextField(
+            onsaved: (value) {
+              discreption = value;
+            },
             maxLine: 5,
             fontSize: 15,
             hintText: "Description",
@@ -30,7 +57,16 @@ class AddNoteBottumSheet extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height / 6,
           ),
-          const CustomBottom()
+          CustomBottom(
+            onTap: () {
+              if (formkey.currentState!.validate()) {
+                formkey.currentState!.save();
+              } else {
+                autovalidateMode = AutovalidateMode.always;
+                setState(() {});
+              }
+            },
+          )
         ],
       ),
     );
