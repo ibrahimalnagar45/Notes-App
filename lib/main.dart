@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/constants.dart';
 import 'package:notesapp/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notesapp/simple_bloc_observer.dart';
 import 'package:notesapp/views/edit_note_view.dart';
 import 'package:notesapp/views/notes_view.dart';
 import 'models/note_model.dart';
@@ -10,8 +11,9 @@ import 'package:hive_flutter/adapters.dart';
 void main() async {
   // initlize and register the hive to be used
   await Hive.initFlutter();
-  await Hive.openBox(kBoxName);
+  await Hive.openBox<NoteModel>(kBoxName);
   Hive.registerAdapter(NoteModelAdapter());
+  Bloc.observer = SimpleBlocObserver();
   runApp(const HomeBage());
 }
 
@@ -24,7 +26,7 @@ class HomeBage extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AddNoteCubit(),
-        ), 
+        ),
       ],
       child: MaterialApp(
         routes: {
