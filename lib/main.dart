@@ -11,8 +11,8 @@ import 'package:hive_flutter/adapters.dart';
 void main() async {
   // initlize and register the hive to be used
   await Hive.initFlutter();
-  await Hive.openBox<NoteModel>(kBoxName);
   Hive.registerAdapter(NoteModelAdapter());
+  await Hive.openBox<NoteModel>(kBoxName);
   Bloc.observer = SimpleBlocObserver();
   runApp(const HomeBage());
 }
@@ -22,21 +22,14 @@ class HomeBage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => AddNoteCubit(),
-        ),
-      ],
-      child: MaterialApp(
-        routes: {
-          NotesView.id: (context) => const NotesView(),
-          EditNoteView.id: (context) => const EditNoteView(),
-        },
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(brightness: Brightness.dark),
-        home: const NotesView(),
-      ),
+    return MaterialApp(
+      routes: {
+        NotesView.id: (context) => const NotesView(),
+        EditNoteView.id: (context) => const EditNoteView(),
+      },
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(brightness: Brightness.dark),
+      home: const NotesView(),
     );
   }
 }

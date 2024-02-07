@@ -27,14 +27,14 @@ class CustomTextField extends StatelessWidget {
       keyboardType: TextInputType.multiline,
       maxLines: maxLine,
       decoration: InputDecoration(
-        focusedBorder: withborder == true
+        focusedBorder: withborder 
             ? const UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.white,
                 ),
               )
             : InputBorder.none,
-        enabledBorder: withborder == true
+        enabledBorder: withborder  
             ? UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.white.withOpacity(.3),
