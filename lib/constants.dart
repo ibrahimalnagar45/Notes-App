@@ -1,1 +1,2 @@
  
+const String kBoxName="NotesBox";
