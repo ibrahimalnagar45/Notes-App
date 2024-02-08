@@ -24,6 +24,8 @@ class NoteCard extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 35,
                 ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
               subtitle: Text(
                 note.discreption,
@@ -31,10 +33,12 @@ class NoteCard extends StatelessWidget {
                   fontSize: 18,
                 ),
                 maxLines: 1,
-                overflow: TextOverflow.clip,
+                overflow: TextOverflow.ellipsis,
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  note.delete();
+                },
                 icon: const Icon(
                   Icons.delete,
                   size: 30,

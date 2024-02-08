@@ -67,11 +67,11 @@ class _AddNoteFormState extends State<AddNoteForm> {
                           ':'
                           "${DateTime.now().minute.toString()}"
                           "  "
-                          "${DateTime.now().year.toString()}"
+                          "${DateTime.now().day.toString()} "
                           "/"
                           "${DateTime.now().month.toString()}"
                           "/"
-                          "${DateTime.now().day.toString()} ",
+                          "${DateTime.now().year.toString()}",
                       color: Colors.black.value);
                   BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                 } else {
