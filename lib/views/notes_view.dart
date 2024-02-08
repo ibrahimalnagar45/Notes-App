@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notesapp/cubits/notes_cubit/notes_cubit.dart';
+import 'package:notesapp/cubits/notes_cubit/notes_states.dart';
 import 'package:notesapp/widgets/add_note_buttom_sheet.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/notes_listview.dart';
@@ -6,6 +9,9 @@ import '../widgets/notes_listview.dart';
 class NotesView extends StatelessWidget {
   const NotesView({super.key});
   static String id = "NotesView";
+
+  @override
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +33,12 @@ class NotesView extends StatelessWidget {
         backgroundColor: Colors.black,
         child: const Icon(Icons.add),
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 9.0),
-        child: NotesListView(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 9.0),
+        child: BlocProvider(
+          create: (context) => NotesCubit(),
+          child: const NotesListView(),
+        ),
       ),
     );
   }

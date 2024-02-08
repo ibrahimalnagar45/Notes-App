@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:notesapp/constants.dart';
 import 'package:notesapp/cubits/add_note_cubit/add_note_states.dart';
@@ -11,9 +12,8 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     emit(AddnoteLoading());
     try {
       var notesBox = Hive.box<NoteModel>(kBoxName);
-
       await notesBox.add(note);
-      emit(AddnoteSuccess());
+      emit(AddnoteSuccess( ));
     } catch (e) {
       emit(AddnoteFailure(e.toString()));
     }

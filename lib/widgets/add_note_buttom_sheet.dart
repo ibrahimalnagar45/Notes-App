@@ -16,6 +16,7 @@ class AddNoteBottumSheet extends StatelessWidget {
           child: BlocListener<AddNoteCubit, AddNoteState>(
             listener: (context, state) {
               if (state is AddnoteSuccess) {
+                 
                 Navigator.pop(context);
               }
               if (state is AddnoteFailure) {
