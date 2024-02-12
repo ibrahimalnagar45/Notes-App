@@ -7,12 +7,13 @@ class CustomTextField extends StatelessWidget {
       required this.hintText,
       required this.fontSize,
       required this.maxLine,
-      this.onsaved});
+      this.onSaved, this.onChanged});
   final bool withborder;
   final String hintText;
   final double fontSize;
   final int maxLine;
-  final Function(String?)? onsaved;
+  final Function(String?)? onSaved;
+  final Function(String?)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -23,18 +24,19 @@ class CustomTextField extends StatelessWidget {
           return null;
         }
       },
-      onSaved: onsaved,
+      onChanged: onChanged,
+      onSaved: onSaved,
       keyboardType: TextInputType.multiline,
       maxLines: maxLine,
       decoration: InputDecoration(
-        focusedBorder: withborder 
+        focusedBorder: withborder
             ? const UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.white,
                 ),
               )
             : InputBorder.none,
-        enabledBorder: withborder  
+        enabledBorder: withborder
             ? UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.white.withOpacity(.3),

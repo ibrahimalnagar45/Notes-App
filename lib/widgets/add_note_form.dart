@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notesapp/models/note_model.dart';
-
 import 'custom_botton.dart';
 import 'custom_color_row_options.dart';
 import 'custom_textfield.dart';
@@ -11,7 +10,6 @@ class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
     super.key,
   });
-
   @override
   State<AddNoteForm> createState() => _AddNoteFormState();
 }
@@ -20,7 +18,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
   final GlobalKey<FormState> formkey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, discreption;
+  // final int color = Colors.black.value;
 
+  NoteModel? note;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -30,7 +30,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomTextField(
-            onsaved: (value) {
+            onSaved: (value) {
               title = value;
             },
             maxLine: 2,
@@ -40,9 +40,11 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 20,
           ),
-          const CustomColorOptions(),
+          CustomColorListView(
+            note: note,
+          ),
           CustomTextField(
-            onsaved: (value) {
+            onSaved: (value) {
               discreption = value;
             },
             maxLine: 5,
@@ -56,30 +58,28 @@ class _AddNoteFormState extends State<AddNoteForm> {
           Padding(
             padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: CustomBottom(
-              onTap: () {
-                if (formkey.currentState!.validate()) {
-                  formkey.currentState!.save();
-                  NoteModel noteModel = NoteModel(
-                      title: title!,
-                      discreption: discreption!,
-                      date: "${DateTime.now().hour.toString()}"
-                          ':'
-                          "${DateTime.now().minute.toString()}"
-                          "  "
-                          "${DateTime.now().day.toString()} "
-                          "/"
-                          "${DateTime.now().month.toString()}"
-                          "/"
-                          "${DateTime.now().year.toString()}",
-                      color: Colors.black.value);
-                  BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                } else {
-                  autovalidateMode = AutovalidateMode.always;
-                  setState(() {});
-                }
-              },
-            ),
+            child: CustomBottom(onTap: () {
+              if (formkey.currentState!.validate()) {
+                formkey.currentState!.save();
+                note = NoteModel(
+                    title: title!,
+                    discreption: discreption!,
+                    date: "${DateTime.now().hour.toString()}"
+                        ':'
+                        "${DateTime.now().minute.toString()}"
+                        "  "
+                        "${DateTime.now().day.toString()} "
+                        "/"
+                        "${DateTime.now().month.toString()}"
+                        "/"
+                        "${DateTime.now().year.toString()}",
+                    color: note?.color ?? 0xff0000);
+                BlocProvider.of<AddNoteCubit>(context).addNote(note!);
+              } else {
+                autovalidateMode = AutovalidateMode.always;
+                setState(() {});
+              }
+            }),
           ),
           const SizedBox(
             height: 12,

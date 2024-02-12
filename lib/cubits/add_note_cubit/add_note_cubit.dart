@@ -7,13 +7,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddNoteCubit extends Cubit<AddNoteState> {
   AddNoteCubit() : super(AddnoteInitial());
-
+  Color color = Colors.black;
+  static int key = -1;
   addNote(NoteModel note) async {
+    note.color = color.value;
     emit(AddnoteLoading());
     try {
       var notesBox = Hive.box<NoteModel>(kBoxName);
-      await notesBox.add(note);
-      emit(AddnoteSuccess( ));
+      key++; // await notesBox.add(note);
+      await notesBox.put(key, note);
+
+      emit(AddnoteSuccess());
     } catch (e) {
       emit(AddnoteFailure(e.toString()));
     }
