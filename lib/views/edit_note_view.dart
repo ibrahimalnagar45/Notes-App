@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notesapp/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; 
 import 'package:notesapp/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/widgets/custom_app_bar.dart';
@@ -37,6 +36,7 @@ class _EditNoteViewState extends State<EditNoteView> {
             // BlocProvider.of<AddNoteCubit>(context).color;
 
             Navigator.pop(context);
+         
           },
           icon: Icons.done,
           title: "Edit Note",

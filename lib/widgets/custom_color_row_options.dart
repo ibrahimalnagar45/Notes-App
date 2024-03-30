@@ -16,6 +16,7 @@ class CustomColorListView extends StatefulWidget {
 }
 
 class _CustomColorListViewState extends State<CustomColorListView> {
+ 
   final List<Color> colors = const [
     Colors.black,
     Colors.red,
@@ -26,26 +27,28 @@ class _CustomColorListViewState extends State<CustomColorListView> {
     Colors.green,
     Colors.yellow
   ];
-  int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 24,
+      height: 30,
       child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: colors.length,
-        itemBuilder: (context, index) => CustomColorContainer(
-          color: colors[index],
-          ontap: () {
-            currentIndex = index;
-            if (widget.note != null) {
-              widget.note!.color = colors[index].value;
-            } else {
-              BlocProvider.of<AddNoteCubit>(context).color = colors[index];
-            }
-          },
-        ),
-      ),
+          scrollDirection: Axis.horizontal,
+          itemCount: colors.length,
+          itemBuilder: (context, index) {
+            return CustomColorContainer(
+              selected: widget.note?.color == colors[index].value,
+              color: colors[index],
+              ontap: () {
+                setState(() {});
+                if (widget.note != null) {
+                  widget.note!.color = colors[index].value;
+                } else {
+                  BlocProvider.of<AddNoteCubit>(context).color = colors[index];
+                }
+              },
+            );
+          }),
     );
   }
 }

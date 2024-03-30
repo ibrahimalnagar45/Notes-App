@@ -50,6 +50,7 @@ class NoteCard extends StatelessWidget {
                       onPressed: () {
                         note!.delete();
                         BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                       
                       },
                       icon: const Icon(
                         Icons.delete,

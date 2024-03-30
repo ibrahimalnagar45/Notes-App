@@ -8,7 +8,6 @@ import '../../constants.dart';
 class NotesCubit extends Cubit<NotesState> {
   NotesCubit() : super(NotesInitial());
   List<NoteModel> notes = [];
-
   fetchAllNotes() {
     var notesBox = Hive.box<NoteModel>(kBoxName);
     notes = notesBox.values.toList();
@@ -16,9 +15,8 @@ class NotesCubit extends Cubit<NotesState> {
   }
 
   List<NoteModel?> fetchANote(String noteTitle) {
-    List<NoteModel?> noteFounded = [];
-
     var notesBox = Hive.box<NoteModel>(kBoxName);
+    List<NoteModel?> noteFounded = [];
     for (int i = 0; i < notes.length; i++) {
       if (notes[i].title == noteTitle || notes[i].title.contains(noteTitle)) {
         dynamic key = notesBox.keyAt(i);

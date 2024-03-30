@@ -15,18 +15,15 @@ class SearchView extends StatefulWidget {
 class _SearchViewState extends State<SearchView> {
   List<NoteModel?> notes = [];
   @override
-  void initState() {
-    BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
+          const SizedBox(height: 30),
           Searchfeild(
-            onSubmitted: (data) {
+            onChanged: (data) {
+              data = data;
               notes = BlocProvider.of<NotesCubit>(context).fetchANote(data);
 
               setState(() {});

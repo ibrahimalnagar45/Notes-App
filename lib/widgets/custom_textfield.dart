@@ -7,7 +7,8 @@ class CustomTextField extends StatelessWidget {
       required this.hintText,
       required this.fontSize,
       required this.maxLine,
-      this.onSaved, this.onChanged});
+      this.onSaved,
+      this.onChanged});
   final bool withborder;
   final String hintText;
   final double fontSize;
@@ -29,6 +30,8 @@ class CustomTextField extends StatelessWidget {
       keyboardType: TextInputType.multiline,
       maxLines: maxLine,
       decoration: InputDecoration(
+        contentPadding:
+            const EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 0),
         focusedBorder: withborder
             ? const UnderlineInputBorder(
                 borderSide: BorderSide(

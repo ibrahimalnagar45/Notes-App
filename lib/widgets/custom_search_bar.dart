@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Searchfeild extends StatelessWidget {
-  const Searchfeild({super.key, this.onSubmitted});
-  final Function(String)? onSubmitted;
+  const Searchfeild({super.key, this.onChanged});
+  final Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,7 +11,7 @@ class Searchfeild extends StatelessWidget {
           color: Colors.grey.withOpacity(.2),
           borderRadius: BorderRadius.circular(12)),
       child: TextField(
-        onChanged: onSubmitted,
+        onChanged: onChanged,
         cursorColor: Colors.blueGrey,
         decoration: const InputDecoration(
           // prefixIcon: IconButton(

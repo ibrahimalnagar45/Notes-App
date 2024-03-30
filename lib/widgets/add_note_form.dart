@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notesapp/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notesapp/models/note_model.dart';
 import 'custom_botton.dart';
 import 'custom_color_row_options.dart';
@@ -29,6 +30,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          const SizedBox(
+            height: 20,
+          ),
           CustomTextField(
             onSaved: (value) {
               title = value;
